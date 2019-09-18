@@ -7,11 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace AnalisisApp
 {
-    public partial class SiteMaster : MasterPage
+    public partial class Site : System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Page.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
         }
     }
 }
