@@ -113,7 +113,7 @@
 
                             <a class="dropdown-toggle" data-toggle="dropdown" style="font-family:Arial; font-size:16px">Registros<span class="caret"></span></a>
                             <ul class="dropdown-menu" style="font-family:Arial; font-size:16px">
-                                <li><a href="/Registros/rPaciente.aspx">Paciente</a></li>
+                                <li><a href="/Registros/rPacientes.aspx">Paciente</a></li>
                                  <li><a href="/Registros/rTipoAnalisis.aspx">Tipo Analisis</a></li>
                                  <li><a href="/Registros/rAnalisis.aspx">Analisis</a></li>
                             </ul>
