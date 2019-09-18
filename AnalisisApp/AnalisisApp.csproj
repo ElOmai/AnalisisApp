@@ -121,6 +121,7 @@
     <Content Include="Global.asax" />
     <Content Include="Registros\rAnalisis.aspx" />
     <Content Include="Registros\rPacientes.aspx" />
+    <Content Include="Registros\rPagos.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -201,6 +202,13 @@
     </Compile>
     <Compile Include="Registros\rPacientes.aspx.designer.cs">
       <DependentUpon>rPacientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Registros\rPagos.aspx.cs">
+      <DependentUpon>rPagos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Registros\rPagos.aspx.designer.cs">
+      <DependentUpon>rPagos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
