@@ -13,6 +13,7 @@ namespace Entidades
         [Key]
         public int PagoId { get; set; }
         public int AnalisisId { get; set; }
+        public decimal MontoPago { get; set; }
         public DateTime FechaRegistro { get; set; }
 
         public virtual List<PagosDetalle> Detalle { get; set; }
@@ -20,7 +21,9 @@ namespace Entidades
         {
             PagoId = 0;
             AnalisisId = 0;
+            MontoPago = 0;
             FechaRegistro = DateTime.Now;
+            Detalle = new List<PagosDetalle>();
         }
 
         public void AgregarDetalle(int analisisId, int pagoId, decimal montopago)

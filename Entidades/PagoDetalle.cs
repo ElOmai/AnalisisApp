@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
+    [Serializable]
     public class PagosDetalle
     {
         [Key]
-        public int DetallePagoId { get; set; }
+        public int DetalleId { get; set; }
         public int PagoId { get; set; }
         public int AnalisisId { get; set; }
         public decimal MontoPago { get; set; }
@@ -18,7 +19,7 @@ namespace Entidades
         public DateTime FechaRegistro { get; set; }
         public PagosDetalle()
         {
-            DetallePagoId = 0;
+            DetalleId = 0;
             PagoId = 0;
             AnalisisId = 0;
             MontoPago = 0;

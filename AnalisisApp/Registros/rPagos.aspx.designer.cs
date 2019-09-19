@@ -7,13 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AnalisisApp.Registros
-{
-
-
-    public partial class rPagos
-    {
-
+namespace AnalisisApp.Registros {
+    
+    
+    public partial class rPagos {
+        
         /// <summary>
         /// PagoIdLabel control.
         /// </summary>
@@ -22,7 +20,7 @@ namespace AnalisisApp.Registros
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label PagoIdLabel;
-
+        
         /// <summary>
         /// PagoIdTextBox control.
         /// </summary>
@@ -31,7 +29,7 @@ namespace AnalisisApp.Registros
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox PagoIdTextBox;
-
+        
         /// <summary>
         /// RequiredFieldValidator1 control.
         /// </summary>
@@ -40,7 +38,7 @@ namespace AnalisisApp.Registros
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
-
+        
         /// <summary>
         /// BuscarButton control.
         /// </summary>
@@ -49,7 +47,7 @@ namespace AnalisisApp.Registros
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BuscarButton;
-
+        
         /// <summary>
         /// FechaTextBox control.
         /// </summary>
@@ -58,7 +56,7 @@ namespace AnalisisApp.Registros
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox FechaTextBox;
-
+        
         /// <summary>
         /// RFVFFecha control.
         /// </summary>
@@ -67,7 +65,7 @@ namespace AnalisisApp.Registros
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVFFecha;
-
+        
         /// <summary>
         /// AnalisisIdLabel control.
         /// </summary>
@@ -76,7 +74,7 @@ namespace AnalisisApp.Registros
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label AnalisisIdLabel;
-
+        
         /// <summary>
         /// AnalisisDropdownList control.
         /// </summary>
@@ -85,7 +83,7 @@ namespace AnalisisApp.Registros
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList AnalisisDropdownList;
-
+        
         /// <summary>
         /// RFVId control.
         /// </summary>
@@ -94,7 +92,7 @@ namespace AnalisisApp.Registros
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVId;
-
+        
         /// <summary>
         /// Balance control.
         /// </summary>
@@ -103,7 +101,7 @@ namespace AnalisisApp.Registros
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Balance;
-
+        
         /// <summary>
         /// BalanceTextBox control.
         /// </summary>
@@ -112,7 +110,7 @@ namespace AnalisisApp.Registros
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox BalanceTextBox;
-
+        
         /// <summary>
         /// Monto control.
         /// </summary>
@@ -121,7 +119,7 @@ namespace AnalisisApp.Registros
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Monto;
-
+        
         /// <summary>
         /// MontoTextBox control.
         /// </summary>
@@ -130,7 +128,7 @@ namespace AnalisisApp.Registros
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox MontoTextBox;
-
+        
         /// <summary>
         /// AgregarButton control.
         /// </summary>
@@ -139,7 +137,7 @@ namespace AnalisisApp.Registros
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button AgregarButton;
-
+        
         /// <summary>
         /// DetalleGridView control.
         /// </summary>
@@ -148,7 +146,7 @@ namespace AnalisisApp.Registros
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView DetalleGridView;
-
+        
         /// <summary>
         /// NuevoButton control.
         /// </summary>
@@ -157,7 +155,7 @@ namespace AnalisisApp.Registros
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button NuevoButton;
-
+        
         /// <summary>
         /// GuardarButton control.
         /// </summary>
@@ -166,7 +164,7 @@ namespace AnalisisApp.Registros
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button GuardarButton;
-
+        
         /// <summary>
         /// EliminarButton control.
         /// </summary>

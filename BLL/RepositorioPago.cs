@@ -1,125 +1,139 @@
-﻿using DAL;
-using Entidades;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using DAL;
+using Entidades;
+
 
 namespace BLL
 {
-    public class RepositorioPago : RepositorioBase<Pago>
+    public class RepositorioPago
     {
-        public override bool Guardar(Pago entity)
-        {
-            RepositorioAnalisis repositorio = new RepositorioAnalisis();
-            Contexto db = new Contexto();
-            foreach (var item in entity.Detalle.ToList())
-            {
-                var Analisis = repositorio.Buscar(item.AnalisisId);
-                Analisis.Balance -= item.MontoPago;
-                db.Entry(Analisis).State = System.Data.Entity.EntityState.Modified;
-            }
-
-            bool paso = db.SaveChanges() > 0;
-            repositorio.Dispose();
-            if (paso)
-            {
-                db.Dispose();
-                return base.Guardar(entity);
-            }
-            db.Dispose();
-            return false;
-        }
-        public override bool Modificar(Pago entity)
+        public static bool Guardar(Pago pago)
         {
             bool paso = false;
-            var Anterior = Buscar(entity.PagoId);
-            Contexto db = new Contexto();
+
+            Contexto contexto = new Contexto();
             try
             {
-                using (Contexto contexto = new Contexto())
+                if (contexto.Pago.Add(pago) != null)
                 {
-                    bool flag = false;
-                    foreach (var item in Anterior.Detalle.ToList())
-                    {
-                        if (!entity.Detalle.Exists(x => x.DetallePagoId == item.DetallePagoId))
-                        {
-                            RepositorioAnalisis repositorio = new RepositorioAnalisis();
-                            var Analisis = repositorio.Buscar(item.AnalisisId);
-                            Analisis.Balance += item.MontoPago;
-                            contexto.Entry(item).State = EntityState.Deleted;
-                            contexto.Entry(Analisis).State = EntityState.Modified;
-                            flag = true;
-                            repositorio.Dispose();
-                        }
-                    }
+                    contexto.Analisis.Find(pago.AnalisisId).Balance -= pago.MontoPago;
 
-                    if (flag)
-                        contexto.SaveChanges();
-                    contexto.Dispose();
+                    contexto.SaveChanges();
+                    paso = true;
                 }
-
-                foreach (var item in entity.Detalle)
-                {
-                    var estado = EntityState.Unchanged;
-                    if (item.DetallePagoId == 0)
-                    {
-                        RepositorioAnalisis repositorio = new RepositorioAnalisis();
-                        var Analisis = repositorio.Buscar(item.AnalisisId);
-                        Analisis.Balance -= item.MontoPago;
-                        estado = EntityState.Added;
-                        db.Entry(Analisis).State = EntityState.Modified;
-                        repositorio.Dispose();
-                    }
-                    db.Entry(item).State = estado;
-                }
-                db.Entry(entity).State = EntityState.Modified;
-                paso = (db.SaveChanges() > 0);
+                contexto.Dispose();
             }
             catch (Exception)
-            { throw; }
-            finally
-            { db.Dispose(); }
+            {
+                throw;
+            }
             return paso;
         }
-        public override Pago Buscar(int id)
+
+
+        public static bool Modificar(Pago pago)
         {
-            Pago Pago = new Pago();
-            Contexto db = new Contexto();
+            bool paso = false;
+
+            Contexto contexto = new Contexto();
+
             try
             {
-                Pago = db.Pago.Include(x => x.Detalle)
-                    .Where(x => x.PagoId == id)
-                    .FirstOrDefault();
+                Pago PagoAnt = RepositorioPago.Buscar(pago.PagoId);
+
+
+                decimal modificado = pago.MontoPago - PagoAnt.MontoPago;
+
+                var Analisis = contexto.Analisis.Find(pago.AnalisisId);
+                Analisis.Balance += modificado;
+                RepositorioAnalisis.Modificar(Analisis);
+
+                contexto.Entry(pago).State = EntityState.Modified;
+                if (contexto.SaveChanges() > 0)
+                {
+                    paso = true;
+                }
+                contexto.Dispose();
             }
             catch (Exception)
-            { throw; }
-            finally
-            { db.Dispose(); }
+            {
+                throw;
+            }
+            return paso;
+        }
+
+
+        public static bool Eliminar(int id)
+        {
+            bool paso = false;
+
+            Contexto contexto = new Contexto();
+            try
+            {
+                Pago pago = contexto.Pago.Find(id);
+
+                contexto.Analisis.Find(pago.AnalisisId).Balance += pago.MontoPago;
+
+                contexto.Pago.Remove(pago);
+
+                if (contexto.SaveChanges() > 0)
+                {
+                    paso = true;
+                }
+                contexto.Dispose();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return paso;
+        }
+
+
+        public static Pago Buscar(int id)
+        {
+            Contexto contexto = new Contexto();
+            Pago pago = new Pago();
+
+            try
+            {
+                pago = contexto.Pago.Find(id);
+                contexto.Dispose();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return pago;
+        }
+
+
+        public static List<Pago> GetList(Expression<Func<Pago, bool>> expression)
+        {
+            List<Pago> Pago = new List<Pago>();
+            Contexto contexto = new Contexto();
+
+            try
+            {
+                Pago = contexto.Pago.Where(expression).ToList();
+                contexto.Dispose();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
             return Pago;
         }
-        public override bool Eliminar(int id)
-        {
-            Pago Pago = Buscar(id);
-            Contexto db = new Contexto();
-            foreach (var item in Pago.Detalle)
-            {
-                RepositorioAnalisis repositorio = new RepositorioAnalisis();
-                var Analisis = db.Analisis.Find(item.AnalisisId);
-                Analisis.Balance += item.MontoPago;
-                repositorio.Modificar(Analisis);
-            }
-            bool paso = (db.SaveChanges() > 0);
-            if (paso)
-            {
-                db.Dispose();
-                return base.Eliminar(Pago.PagoId);
-            }
-            db.Dispose();
-            return false;
-        }
+
+
+
+
     }
 }
